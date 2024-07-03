@@ -1,0 +1,91 @@
+﻿@using APP.DTO
+
+@{
+    // Retrieve data from ViewData
+    var simActiveResponses = ViewData["personalDataSimActiveResponse"] as List<PersonalDataSimActiveResponse>;
+    var activeCountResponses = ViewData["personalDataActiveCountResponse"] as List<PersonalDataActiveCountResponse>;
+}
+
+<style>
+    /* CSS for table borders */
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    .table th, .table td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    .table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<h1>Personal Data</h1>
+
+<h2>Personal Data SIM Active Response</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Personal ID</th>
+            <th>Full Name</th>
+            <th>Contract Type</th>
+            <th>Identity Type</th>
+            <th>Expired Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (simActiveResponses != null)
+        {
+            foreach (var item in simActiveResponses)
+            {
+                <tr>
+                    <td>@item.PersonalID</td>
+                    <td>@item.FullName</td>
+                    <td>@item.ContractType</td>
+                    <td>@item.IdentityType</td>
+                    <td>@item.ExpiredDate.ToString("yyyy-MM-dd")</td> <!-- Example formatting -->
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5">No data available</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Personal Data Active Count Response</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Personal ID</th>
+            <th>Full Name</th>
+            <th>Contract Type</th>
+            <th>Number of Identities</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (activeCountResponses != null)
+        {
+            foreach (var item in activeCountResponses)
+            {
+                <tr>
+                    <td>@item.PersonalID</td>
+                    <td>@item.FullName</td>
+                    <td>@item.ContractType</td>
+                    <td>@item.JumlahIdentity</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">No data available</td>
+            </tr>
+        }
+    </tbody>
+</table>
